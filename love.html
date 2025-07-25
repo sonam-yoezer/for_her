@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Her</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(to top right, #ffdde1, #ee9ca7);
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .name {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 8px #ff69b4;
+      z-index: 2;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1.8rem;
+      color: white;
+      text-shadow: 1px 1px 4px #ff69b4;
+      animation: fade 3s ease-in-out infinite;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+
+    .buttons button:hover {
+      transform: scale(1.1);
+    }
+
+    .yes {
+      background-color: #ff69b4;
+      color: white;
+    }
+
+    .no {
+      background-color: #fff;
+      color: #ff69b4;
+      border: 2px solid #ff69b4;
+    }
+
+    .heart, .flower {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-size: cover;
+      animation: float 10s infinite;
+      opacity: 0.8;
+    }
+
+    .heart {
+      background-image: url('https://img.icons8.com/emoji/48/heart-suit.png');
+    }
+
+    .flower {
+      background-image: url('https://img.icons8.com/emoji/48/cherry-blossom.png');
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      50% { transform: translateY(-200px) rotate(180deg); opacity: 0.5; }
+      100% { transform: translateY(0) rotate(360deg); opacity: 1; }
+    }
+
+    @keyframes fade {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .decor { pointer-events: none; }
+    .decor div { position: absolute; }
+
+    .heart:nth-child(1) { top: 10%; left: 20%; }
+    .heart:nth-child(2) { top: 70%; left: 80%; }
+    .heart:nth-child(3) { top: 30%; left: 50%; }
+
+    .flower:nth-child(1) { top: 20%; left: 75%; }
+    .flower:nth-child(2) { top: 60%; left: 15%; }
+    .flower:nth-child(3) { top: 50%; left: 50%; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="name">Name</div>
+    <div class="message" id="message">Do you love me? 💌</div>
+
+    <div class="buttons">
+      <button class="yes" onclick="reply(true)">Yes</button>
+      <button class="no" onclick="reply(false)">No</button>
+    </div>
+
+    <div class="decor">
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="flower"></div>
+      <div class="flower"></div>
+      <div class="flower"></div>
+    </div>
+  </div>
+
+<script>
+  const messageEl = document.getElementById("message");
+  const yesBtn = document.querySelector(".yes");
+  const noBtn = document.querySelector(".no");
+  const buttonsDiv = document.querySelector(".buttons");
+
+  const noMessages = [
+    "Please give me a chance? 🥺",
+    "I won't let you down, give me a chance? 🙏",
+    "My heart is true, just one chance? 💖",
+    "I promise to cherish you. Please? 🌸",
+    "You're special to me. Let me show you? ✨",
+    "Don't say no again... 😢",
+    "I'll wait forever if I have to ❤️‍🔥",
+    "Even your no is beautiful... but I still hope 💘",
+  ];
+
+  let noCount = 0;
+
+  function reply(lovesMe) {
+    if (lovesMe) {
+      messageEl.textContent = "I love you ❤️";
+      buttonsDiv.style.display = "none";
+    } else {
+      if (noCount < noMessages.length) {
+        messageEl.textContent = noMessages[noCount];
+        noCount++;
+      } else {
+        messageEl.textContent = "I really love you ❤️‍🔥";
+        buttonsDiv.style.display = "none"; // Hide buttons permanently
+      }
+    }
+  }
+</script>
+
+
+</body>
+</html>
